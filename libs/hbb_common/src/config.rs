@@ -101,7 +101,7 @@ const CHARS: &[char] = &[
 ];
 
 pub const RENDEZVOUS_SERVERS: &[&str] = &["ddns.qiandao88.top"];
-pub const PUBLIC_RS_PUB_KEY: &str = "oBt2LG2x5eUF9nxuAjIx7PqqlEb517dYIFQwm6ACZuM=";
+pub const PUBLIC_RS_PUB_KEY: &str = "yK+fLk4zjkN95CJmOZPyKAPDF2IoPxC9UMA7NsC6Ahs=";
 
 pub const RS_PUB_KEY: &str = match option_env!("RS_PUB_KEY") {
     Some(key) if !key.is_empty() => key,
