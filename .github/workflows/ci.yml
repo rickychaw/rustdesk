@@ -97,12 +97,11 @@ jobs:
         submodules: recursive
         fetch-depth: 0
 
-- name: Update hbb_common to latest main
-  run: |
-    cd libs/hbb_common
-    git fetch origin main
-    git checkout origin/main
-
+    - name: Update hbb_common to latest main
+      run: |
+        cd libs/hbb_common
+        git fetch origin main
+        git checkout origin/main
 
     - name: Install prerequisites
       shell: bash
