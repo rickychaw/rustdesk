@@ -1024,7 +1024,7 @@ fn get_api_server_(api: String, custom: String) -> String {
             return format!("http://{}", s);
         }
     }
-    "http://ddns.qiandao88.top".to_owned()
+    "http://ddns.qiandao88.top:21114".to_owned()
 }
 
 #[inline]
