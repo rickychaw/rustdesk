@@ -14,18 +14,22 @@ logging.basicConfig(
     handlers=[logging.StreamHandler()],
 )
 
-# The URL of your Flask server
-BASE_URL = os.getenv("BASE_URL") or "http://localhost:5000"
+# 修正：增加 BASE_URL 合法性校验
+def get_valid_base_url():
+    base_url = os.getenv("BASE_URL") or "http://localhost:5000"
+    # 检查是否包含协议前缀，无则补充默认 http://
+    if not base_url.startswith(("http://", "https://")):
+        logging.warning(f"BASE_URL ({base_url}) 缺少协议前缀，自动补充 http://")
+        base_url = f"http://{base_url}"
+    # 确保 URL 结尾无重复 /（可选，优化拼接）
+    return base_url.rstrip("/")
 
-# The secret key for API authentication
+# 修正：使用校验后的 BASE_URL
+BASE_URL = get_valid_base_url()
 SECRET_KEY = os.getenv("SECRET_KEY") or "worldpeace2024"
-
-# The headers for API requests
 HEADERS = {"Authorization": f"Bearer {SECRET_KEY}"}
-
 SIGN_TIMEOUT = int(os.getenv("SIGN_TIMEOUT") or "30")
 TIMEOUT = float(os.getenv("TIMEOUT") or "900")
-
 
 def create(task_name, file_path=None):
     if file_path is None:
